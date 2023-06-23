@@ -25,6 +25,12 @@ class SnippetController extends Controller
 
     public function store(Request $request) {
 
+        // VALIDATION
+        $request->validate([
+            'title'     => 'required|max:255',
+            'description'     => 'required',
+            'code'     => 'required'
+        ]);
 
         $slug = Str::slug($request->title, '-', 'es');
 
@@ -34,18 +40,10 @@ class SnippetController extends Controller
             return redirect()->route('home')->withErrors(['title' => 'Ese título ya existe']);
         }
 
-
-        // VALIDATION
-        $request->validate([
-            // 'user_id'   => 'required|exists:users.id',
-            'title'     => 'required|max:255',
-            'description'     => 'required',
-            'code'     => 'required'
-        ]);
-
+        $user = Auth::user();
 
         $snippet = Snippet::create([
-            'user_id' => 1,
+            'user_id' => $user->id,
             'title' => $request->title,
             'slug' => $slug,
             'description' => $request->description,
@@ -72,7 +70,6 @@ class SnippetController extends Controller
     }
 
     public function like(Request $request, $slug){
-        // dd($slug);
 
         $user_id = Auth::id();
 
