@@ -1,49 +1,108 @@
-body{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: Arial, Helvetica, sans-serif;
 }
-main{
+
+main,
+.main {
     display: flex;
     justify-content: center;
     align-content: center;
 }
-.panel{
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+header .avatar {
+    padding: 0.5rem 0.9rem .3rem;
+    color: white;
+    font-size: 2rem;
+    border-radius: 50%;
+    text-align: centers;
+    background-color: darkslategray;
+    font-weight: bold;
+    margin: .6rem .6rem 0 0;
+    text-decoration: none;
+}
+
+input,
+textarea {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid gray;
+    padding: .6rem;
+}
+
+.panel {
     border: 1px solid black;
     margin-bottom: 1rem;
     border-radius: 5px;
 }
-.panel div{
+
+.panel div {
     padding: 1rem;
 }
-.panel div.title a{
+
+.panel div.title a {
     text-decoration: none;
+}
+
+.title {
+    background-color: #547461;
     color: white;
     font-weight: bold;
 }
-.title{
-    background-color: #ccccff;
-}
 
-.container{
+.container {
     width: 100%;
     max-width: 720px;
 }
 
-.like{
+.like {
     filter: grayscale(100%);
 }
 
-.liked{
+.liked {
     filter: none;
 }
-.badge{
+
+.badge {
     display: inline-block;
     border-radius: 100%;
     background-color: red;
     font-weight: bold;
     font-size: .7rem;
-    /* padding: auto .2rem; */
     width: 14px;
     height: 14px;
     text-align: center;
     color: white;
+}
+
+.btn {
+    padding: .6rem 1rem;
+    border-radius: 4px;
+    background-color: gray;
+    text-decoration: none;
+    border: 1px solid darkslategrey;
+    font-weight: bold;
+    color: white;
+    margin: 1rem;
+}
+
+.green {
+    background-color: darkgreen;
+    border: 1px solid darkgreen;
+    color: white;
+}
+
+.alert ul {
+    list-style-type: none;
 }

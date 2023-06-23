@@ -1,49 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Listado de snippets</title>
-    <link rel="stylesheet" href="@vite('resources/css/app.css')">
-</head>
-<body>
-    
-    <header>
-        @auth
-            ESTOY LOGADO 
-            {{Auth::user()->email}}
-        @endauth
-    </header>
+@extends('layouts.main')
 
-    <main>
-        <a href="{{route('snippet.new')}}">
+@section('title', 'Create new snippet')
+
+
+@section('content')
+
+    <div class="main">
+        <a href="{{ route('snippet.new') }}" class="btn green">
             Crear nuevo snippet
         </a>
-    </main>
+    </div>
 
     <main>
-        <div>
+        <div class="container">
             Mostrando Snippet {{ $snippet->title }}
             <div class="panel">
-                <div class="title">{{ $snippet->title}}</div>
-                <div class="description">{{ $snippet->description}}</div>
+                <div class="title">{{ $snippet->title }}</div>
+                <div class="description">{{ $snippet->description }}</div>
+                <hr>
                 <div class="code">
                     <pre>{{ $snippet->code }}</pre>
                 </div>
 
                 <div class="footer">
 
-                    <a href="{{ route('snippet.like', ['slug' => $snippet->slug]) }}" 
-                        @if ($liked)
-                            class="liked"
+                    <a href="{{ route('snippet.like', ['slug' => $snippet->slug]) }}"
+                        @if ($liked) class="liked"
                         @else
-                            class="like"
-                        @endif
-                        >❤️</a>
+                            class="like" @endif>❤️</a>
 
-                        <span class="badge">{{ $snippet->likes()->count() }} </span>
-                    
+                    <span class="badge">{{ $snippet->likes()->count() }} </span>
+
                 </div>
             </div>
 
@@ -57,7 +44,7 @@
                         Comentarios:
 
                         <div>
-                            
+
 
                             @foreach ($snippet->comentarios as $comentario)
                                 <div style="border: 1px solid #666; border-radius:5px; margin-bottom: .6rem;">
@@ -68,7 +55,7 @@
                                         {{ $comentario->comment }}
                                     </div>
                                     <div style="text-align: right; padding-right: .4rem;">
-                                        
+
                                         <form action="/comments/delete/{{ $comentario->id }}" method="POST">
                                             <input type="hidden" name="_method" value="delete">
                                             @csrf
@@ -85,7 +72,7 @@
                     </div>
 
                     <div>
-                                    
+
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -105,14 +92,15 @@
                                     <textarea name="comment" id="comment" rows="10" style="width: 100%;"></textarea>
                                 </label>
                             </div>
-                            
+
                             <div style="text-align: right;">
-                                <input type="submit" value="Comentar" style="border: 1px solid green; background-color: lightgreen; color:darkgreen; padding: .4rem 1rem; border-radius: 4px;">
+                                <input type="submit" value="Comentar"
+                                    style="border: 1px solid green; background-color: lightgreen; color:darkgreen; padding: .4rem 1rem; border-radius: 4px;">
                             </div>
                         </form>
                         <hr><br>
                     </div>
-    
+
 
 
                 </div>
@@ -120,5 +108,4 @@
         </div>
     </main>
 
-</body>
-</html>
+@endsection
