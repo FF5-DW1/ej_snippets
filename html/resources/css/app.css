@@ -1,0 +1,49 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.panel{
+    border: 1px solid black;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+.panel div{
+    padding: 1rem;
+}
+.panel div.title a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+.title{
+    background-color: #ccccff;
+}
+
+.container{
+    width: 100%;
+    max-width: 720px;
+}
+
+.like{
+    filter: grayscale(100%);
+}
+
+.liked{
+    filter: none;
+}
+.badge{
+    display: inline-block;
+    border-radius: 100%;
+    background-color: red;
+    font-weight: bold;
+    font-size: .7rem;
+    /* padding: auto .2rem; */
+    width: 14px;
+    height: 14px;
+    text-align: center;
+    color: white;
+}

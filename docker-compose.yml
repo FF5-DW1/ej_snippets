@@ -1,0 +1,47 @@
+version: "3.9"
+name: snippets
+
+networks:
+    snippets:
+
+services:
+    nginx:
+        image: nginx:stable
+        volumes: 
+            - ./html:/var/www/html
+            - ./default.conf:/etc/nginx/conf.d/default.conf
+        ports:
+            - 80:80
+        restart: always
+        depends_on:
+            - php
+            - db
+        networks:
+            - snippets
+
+    php:
+        build: 
+            context: .
+            dockerfile: ./Dockerfile-php
+        volumes: 
+            - ./html:/var/www/html
+        ports:
+            - 9000:9000
+        restart: always
+        networks:
+            - snippets
+
+    db:
+        image: mysql:latest
+        volumes: 
+            - ./db:/var/lib/mysql
+        ports:
+            - 3306:3306
+        restart: always
+        environment:
+            - MYSQL_DATABASE=snippets
+            - MYSQL_USER=admin
+            - MYSQL_PASSWORD=secret
+            - MYSQL_ROOT_PASSWORD=secret
+        networks:
+            - snippets
