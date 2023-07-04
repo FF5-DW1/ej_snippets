@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SnippetController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,12 +38,16 @@ Route::middleware('auth')->group(function () {
 Route::get('/snippet/{slug}', [SnippetController::class, 'show'])->name('snippet.show');
 
 
-Route::get('/login', [LoginController::class, 'login']);
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
 // TODO: Logout
 
 // TODO: Register
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
+
 
 // TODO: Profile
+
 Route::get("/profile", [ProfileController::class, 'index'])->name('profile');

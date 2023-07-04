@@ -29,6 +29,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql zip xml bz2 bcmath
 
 
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
 # USER alex
 
 
